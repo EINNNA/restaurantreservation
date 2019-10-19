@@ -48,15 +48,20 @@
         <script type="text/javascript">
             $.get("/api/tables", function(data){
                 console.log(data);
+                var i = 1;
+
                 data.forEach(function (item){
-                    $(".reservations").append("<div>" + item.name + "</div>");
+                    $(".reservations").append("<div><h2>" + i + "</h2>" + item.name + "</div>");
+                    i++;
                 })
             });
 
             $.get("/api/waitinglist", function(data){
+                var i = 1;
                 console.log(data);
                 data.forEach(function (item){
                     $(".waitList").append("<div>" + item.name + "</div>");
+                    i++;
                 })
             });
 
