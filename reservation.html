@@ -10,13 +10,14 @@
     <body>
         <!-- HEADER CARD -->
         <div class="row">
+
                 <div class="col-md-2"></div>
                 <div class="card text-white mb-3 col-md-8 frontPage">
                     <div class="card-body insides">
                       <h1 class="card-title text-center">Fancy McDonālds</h1>
                         <div class="row">
                             <div class="col-md-3"></div>
-                            <a href="#" class="btn-lg btn-warning">Reservation List</a>
+                            <a href="#" class="btn-lg btn-warning">Currently Waiting List</a>
                             <a href="#" class="btn-lg btn-warning">Home</a>
                         </div>
                     </div>
@@ -28,9 +29,9 @@
                 <div class="col-md-2"></div>
                     <div class="card text-white bg-danger mb-3 col-md-8">
                         <div class="card-body">
+                          
                         <h5 class="card-title text-center">Table Reservation</h5>
                         <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
                         <input type="email" class="form-control" id="name" placeholder="Type your name">
 
                         <label for="exampleFormControlInput1">Time</label>
@@ -45,10 +46,27 @@
                     </div>
                 </div>
             </row>
+            <div class="row">
+                <div class="col">
+                    <button type="submit">submit</button>
+                </div>
+            </div>
+
         </form>
 
         <!-- JAVASCRIPT -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+        <script>
+            $("#booking").submit(function(event){
+                event.preventDefault();
+                $.ajax("/api/tables", {
+                    method: "POST",
+                    data: $("#booking").serialize()
+                }).then (function(response){
+                    console.log(response);
+                })
+            })
+        </script>
     </body>
 </html>
