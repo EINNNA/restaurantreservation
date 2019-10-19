@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- FORM CARD -->
-        <form>
+        <form id = "booking">
             <div class="row">
                 <div class="col-md-2"></div>
                     <div class="card text-white bg-danger mb-3 col-md-8">
@@ -31,24 +31,40 @@
                         <h5 class="card-title text-center">Table Reservation</h5>
                         <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
-                        <input type="email" class="form-control bg-warning" id="name" placeholder="Type your name">
+                        <input type="input" class="form-control bg-warning" id="name" name="name" placeholder="Type your name">
 
                         <label for="exampleFormControlInput1">Time</label>
-                        <input type="email" class="form-control bg-warning" id="time" placeholder="Give the time you'd like">
+                        <input type="input" class="form-control bg-warning" id="time" name="time" placeholder="Give the time you'd like">
                         </div>
 
                         <label for="exampleFormControlInput1">Email</label>
-                        <input type="email" class="form-control bg-warning" id="email" placeholder="Give your email">
+                        <input type="email" class="form-control bg-warning" id="email" name="email" placeholder="Give your email">
 
                         <label for="exampleFormControlInput1">Contact Number</label>
-                        <input type="email" class="form-control bg-warning" id="number" placeholder="Give us your number">
+                        <input type="input" class="form-control bg-warning" id="number" name="number" placeholder="Give us your number">
                     </div>
                 </div>
-            </row>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit">submit</button>
+                </div>
+            </div>
         </form>
 
         <!-- JAVASCRIPT -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+        <script>
+            $("#booking").submit(function(event){
+                event.preventDefault();
+                $.ajax("/api/tables", {
+                    method: "POST",
+                    data: $("#booking").serialize()
+                }).then (function(response){
+                    console.log(response);
+                })
+            })
+        </script>
     </body>
 </html>
