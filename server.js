@@ -17,15 +17,15 @@ var reservations = [];
 var waitList = [];
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    res.sendFile(path.join(__dirname, "frontpage.html"));
 });
 
-app.get("/tables", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+app.get("/ReservationList", function (req, res) {
+    res.sendFile(path.join(__dirname, "list.html"));
 });
 
-app.get("/waitlist", function (req, res) {
-    res.sendFile(path.join(__dirname, "wait.html"));
+app.get("/MakeAReservation", function (req, res) {
+    res.sendFile(path.join(__dirname, "reservation.html"));
 });
 
 app.get("/api/tables", function (req, res) {
