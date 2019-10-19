@@ -2,7 +2,7 @@ var express = require("express");
 var path = require("path");
 
 var app = express();
-var PORT = 3010;
+var PORT = process.env.PORT;
 
 app.use(express.urlencoded({
     extended: true
