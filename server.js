@@ -31,6 +31,22 @@ app.get("/MakeAReservation", function (req, res) {
 app.get("/api/tables", function (req, res) {
     return res.json(reservations);
 });
+
 app.get("/api/waitinglist", function (req, res) {
     return res.json(waitList);
 });
+
+app.post("/api/tables", function (req, res){
+    var newReservation = req.body;
+    console.log(newReservation)
+
+    if(reservations.length < 5){
+        reservations.push(newReservation)
+        
+    }else{
+        waitList.push(newReservation)
+    }
+
+    res.json(newReservation);
+});
+
