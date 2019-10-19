@@ -23,8 +23,44 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-header">
+              <h3><strong>Current Reservations</strong></h3>
+            </div>
+            <div class="card-body reservations">
+              <h2 id="name"></h2>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header waitList">
+                <h3><strong>Wait List</strong></h3>
+            </div>
+            <div class="card-body">
+                <h2 id="name"></h2>
+            </div>
+        </div>
+
         <!-- JAVASCRIPT -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="assets/javascript/app.js"></script>
+        
+        <script type="text/javascript">
+            $.get("/api/tables", function(data){
+                console.log(data);
+                data.forEach(function (item){
+                    $(".reservations").append("<div>" + item.name + "</div>");
+                })
+            });
+
+            $.get("/api/waitinglist", function(data){
+                console.log(data);
+                data.forEach(function (item){
+                    $(".waitList").append("<div>" + item.name + "</div>");
+                })
+            });
+
+
+        </script>
     </body>
 </html>
