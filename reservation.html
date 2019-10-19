@@ -1,70 +1,79 @@
 <html>
-    <head>
-        <!-- BOOTSTRAP -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-        <!-- jQUERY -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <!-- HEADER CARD -->
+
+<head>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- jQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- HEADER CARD -->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="card text-white bg-danger mb-3 col-md-8">
+            <div class="card-body">
+                <h1 class="card-title text-center">Fancy McDonālds</h1>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <a href="#" class="btn btn-warning">Current Waiting list</a>
+                    <a href="#" class="btn btn-warning">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FORM CARD -->
+    <form id="booking">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="card text-white bg-danger mb-3 col-md-8">
                 <div class="card-body">
-                  <h1 class="card-title text-center">Fancy McDonālds</h1>
+                    <h5 class="card-title text-center">Table Reservation</h5>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="input" class="form-control bg-warning" id="name" name="name"
+                            placeholder="Type your name">
+
+                        <label for="exampleFormControlInput1">Time</label>
+                        <input type="input" class="form-control bg-warning" id="time" name="time"
+                            placeholder="Give the time you'd like">
+                    </div>
+
+                    <label for="exampleFormControlInput1">Email</label>
+                    <input type="email" class="form-control bg-warning" id="email" name="email"
+                        placeholder="Give your email">
+
+                    <label for="exampleFormControlInput1">Contact Number</label>
+                    <input type="input" class="form-control bg-warning" id="number" name="number"
+                        placeholder="Give us your number">
+                    </br>
                     <div class="row">
-                        <div class="col-md-4"></div>
-                        <a href="#" class="btn btn-warning">Current Waiting list</a>
-                        <a href="#" class="btn btn-warning">Home</a>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-warning">submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- FORM CARD -->
-        <form id = "booking">
-            <div class="row">
-                <div class="col-md-2"></div>
-                    <div class="card text-white bg-danger mb-3 col-md-8">
-                        <div class="card-body">
-                        <h5 class="card-title text-center">Table Reservation</h5>
-                        <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
-                        <input type="input" class="form-control bg-warning" id="name" name="name" placeholder="Type your name">
+    </form>
 
-                        <label for="exampleFormControlInput1">Time</label>
-                        <input type="input" class="form-control bg-warning" id="time" name="time" placeholder="Give the time you'd like">
-                        </div>
+    <!-- JAVASCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-                        <label for="exampleFormControlInput1">Email</label>
-                        <input type="email" class="form-control bg-warning" id="email" name="email" placeholder="Give your email">
-
-                        <label for="exampleFormControlInput1">Contact Number</label>
-                        <input type="input" class="form-control bg-warning" id="number" name="number" placeholder="Give us your number">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button type="submit">submit</button>
-                </div>
-            </div>
-        </form>
-
-        <!-- JAVASCRIPT -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-        <script>
-            $("#booking").submit(function(event){
-                event.preventDefault();
-                $.ajax("/api/tables", {
-                    method: "POST",
-                    data: $("#booking").serialize()
-                }).then (function(response){
-                    console.log(response);
-                })
+    <script>
+        $("#booking").submit(function (event) {
+            event.preventDefault();
+            $.ajax("/api/tables", {
+                method: "POST",
+                data: $("#booking").serialize()
+            }).then(function (response) {
+                console.log(response);
             })
-        </script>
-    </body>
+        })
+    </script>
+</body>
+
 </html>
