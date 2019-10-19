@@ -5,25 +5,67 @@
         <!-- jQUERY -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- CSS -->
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" type="style" href="./style.css">
     </head>
     <body>
         <!-- HEADER CARD -->
         <div class="row">
-                <div class="col-md-2"></div>
-                <div class="card text-white mb-3 col-md-8 frontPage">
-                    <div class="card-body insides">
-                      <h1 class="card-title text-center">Fancy McDonālds</h1>
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <a href="#" class="btn-lg btn-warning">Make a Reservation</a>
-                            <a href="#" class="btn-lg btn-warning">Home</a>
-                        </div>
+            <div class="col-md-2"></div>
+            <div class="card text-white bg-danger mb-3 col-md-8">
+                <div class="card-body">
+                  <h1 class="card-title text-center">Fancy McDonālds</h1>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <a href="/MakeAReservation" class="btn btn-warning">Make a reservation</a>
+                        <a href="/" class="btn btn-warning">Home</a>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+              <h3><strong>Current Reservations</strong></h3>
+            </div>
+            <div class="card-body reservations">
+              <h2 id="name"></h2>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3><strong>Wait List</strong></h3>
+            </div>
+            <div class="card-body waitList">
+                <h2 id="name"></h2>
+            </div>
+        </div>
+
         <!-- JAVASCRIPT -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="assets/javascript/app.js"></script>
+        
+        <script type="text/javascript">
+            $.get("/api/tables", function(data){
+                console.log(data);
+                var i = 1;
+
+                data.forEach(function (item){
+                    $(".reservations").append("<div><h2>" + i + "</h2>" + item.name + "</div>");
+                    i++;
+                })
+            });
+
+            $.get("/api/waitinglist", function(data){
+                var i = 1;
+                console.log(data);
+                data.forEach(function (item){
+                    $(".waitList").append("<div><h2>" + i + "</h2>" + item.name + "</div>");
+                    i++;
+                })
+            });
+
+
+        </script>
     </body>
 </html>
